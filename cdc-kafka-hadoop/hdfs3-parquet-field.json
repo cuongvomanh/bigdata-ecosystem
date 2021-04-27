@@ -1,0 +1,16 @@
+{
+    "name": "hdfs3-parquet-field",
+    "config": {
+        "connector.class": "io.confluent.connect.hdfs3.Hdfs3SinkConnector",
+        "tasks.max": "1",
+        "topics": "dbserver1.inventory.customers",
+        "hdfs.url": "hdfs://namenode:9000",
+        "flush.size": "3",
+        "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "value.converter.schema.registry.url":"http://localhost:8081",
+        "confluent.topic.bootstrap.servers": "localhost:9092",
+	"confluent.topic.replication.factor": "1",
+        "format.class":"io.confluent.connect.hdfs3.json.JsonFormat"
+    }
+}
