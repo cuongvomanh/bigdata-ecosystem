@@ -1,0 +1,24 @@
+{
+   "name": "hbase3",
+   "config": {
+    "topics": "dbserver1.inventory.customers",
+    "tasks.max": "1",
+    "connector.class": "io.confluent.connect.hbase.HBaseSinkConnector",
+    "key.converter":"org.apache.kafka.connect.json.JsonConverter",
+    "value.converter":"org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "true",
+    "confluent.topic.bootstrap.servers": "kafka:9092",
+    "confluent.topic.replication.factor":1,
+    "hbase.zookeeper.quorum": "10.61.186.56",
+    "hbase.zookeeper.property.clientPort": "2181",
+    "auto.create.tables": "true",
+    "auto.create.column.families": "true",
+        "insert.mode": "upsert",
+    "pk.mode": "record_key",
+    "pk.fields": "ID",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+
+    "table.name.format": "hbase-products3"
+  }
+}
