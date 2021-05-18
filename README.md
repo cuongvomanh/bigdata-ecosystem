@@ -1,26 +1,32 @@
 # bigdata-ecosystem
 
-## Create global network
+## Installation 
+
+### Create global network
 
 ```
 docker network create mynetwork
 ```
 
-## Start hadoop system
+### Start hadoop system
 
 ```
 cd docker-hadoop
 docker-compose up -d
 ```
 
-## Start Hbase
+### Start Hbase
 
 ```
 cd docker-hbase
 docker-compose up -d
 ```
 
-## Start kafka ecosystem, mysql 
+## Sample Application
+
+Make datalake base hbase for OLAP from OLTP RDBMS mysql.
+
+### Start kafka ecosystem, mysql 
 
 ```
 export DEBEZIUM_VERSION=0.6
@@ -29,7 +35,7 @@ docker-compose -f docker-compose-mysql.yaml up -d
 ```
 
 
-## Start cdc mysql to kafka
+### Start cdc mysql to kafka
 
 ```
 cd cdc-kafka-hadoop/cdc/debezium
@@ -37,7 +43,7 @@ curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json"
 ```
 
 
-## Get data from kafka
+### Get data from kafka
 
 ```
 docker exec -it schema-registry /usr/bin/kafka-avro-console-consumer \
@@ -49,13 +55,13 @@ docker exec -it schema-registry /usr/bin/kafka-avro-console-consumer \
 
 ```
 
-## Sink kafka to hbase
+### Sink kafka to hbase
 
 ```
 curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8084/connectors/ -d @register-hbase-sink-json-debe.json
 ```
 
-## Access to hbase
+### Access to hbase
 
 ```
 docker exec -it hbase-master bash
